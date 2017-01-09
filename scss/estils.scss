@@ -1,0 +1,121 @@
+$cfirst:rgb(62, 169, 185);
+$csecond:rgb(68, 196, 215);
+$cthird:rgb(85, 213, 232);
+
+@mixin background($color){
+  background: $color; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, darken($color,10%), $color); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, darken($color,10%) , $color); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+@mixin center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body{
+  margin:0;
+  font-family: sans-serif;
+  font-size: 1rem;
+  color:black;
+}
+ul{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+}
+li{
+  margin-left: 0;
+  padding-left: 0;
+  text-align: center;
+  transition: color 0.2s ease-out,
+  background-color 0.2s ease-out;
+}
+a{
+  text-decoration: none;
+  color: inherit;
+}
+.banner{
+  @include center;
+  margin:0;
+  min-height: 100px;
+  background: $cfirst; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, $cthird, $cfirst); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, $cthird, $cfirst); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  h1{
+    color:white;
+    margin: 0;
+    padding: 15px;
+    font-size: 1em;
+  }
+}
+nav{
+  margin:0;
+  padding:0;
+  width: 100%;
+  background: $cfirst; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, $cthird, $cfirst); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, $cthird, $cfirst); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.main{
+  margin:0px;
+  width: 100%;
+  @include center;
+  }
+.main>li{
+  @include center;
+    width: 33%;
+    min-height: 30px;
+    padding: 1em 0em;
+    border-right: 1px solid white;
+  }
+.main>li:last-child{
+    border-right: none;
+  }
+.first, .first ul{
+    @include background($cfirst);
+}
+.second, .second ul{
+  @include background($csecond);
+}
+.third, .third ul{
+  @include background($cthird);
+}
+.desplegable{
+          position: absolute;
+          top:170px;
+          width:30%;
+          max-height: 0px;
+          transition: max-height 0.5s linear;
+          overflow: hidden;
+          border-radius: 10px;
+}
+.desplegable li{
+            border-bottom:1px solid rgb(184, 242, 247);
+            margin: 5px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            color: black;
+            }
+.desplegable li:last-child{
+            border-bottom:none;
+          }
+.main>li:hover>ul.desplegable{
+        max-height: 500px;
+        border:1px solid white;
+        }
+.main>li:hover{
+          color:white;
+      }
+.main>li.first>ul.desplegable>li:hover{
+    background-color: darken($cfirst, 20%);
+    color:white;
+  }
+.desplegable li:hover{
+  background-color: darken($csecond, 20%);
+  color:white;
+}
+li.third>ul.desplegable>li:hover{
+    background-color: darken($cthird, 20%);
+    color:white;
+}
